@@ -1,2 +1,2 @@
-# Node_blog_api
-A Node.js Restful API for a generic blog
+# Node Blog API
+A [Node.js](https://nodejs.org/en/) Restful API for a generic blog
