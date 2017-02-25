@@ -2,36 +2,32 @@ const express		= require('express');
 const server		= express();
 const bodyParser	= require('body-parser');
 const mongoose		= require('mongoose');
+const Categories	= require('./models/categories');
+const Template		= require('./template/template');
 const PORT			= 5000;
 
 // use bodyParser to parse the body
 server.use(bodyParser.json());
 
 // Database connection
-mongoose.connect('mongodb://dortiz:l3inad1982@ds157499.mlab.com:57499/bv_blog');
+mongoose.connect('mongodb://localhost/bv_blog');
 
 server.get('/', (req, res)=>{
-
-	let homeMessage	= `
-		<h1><a href="https://nodejs.org/en/" target="_blank">Node.js</a> Blog API.</h1>
-		<h3>API endpoints below:</h3>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about">About API</a></li>
-		</ul>
-	`;
-
-	res.send(homeMessage);
+	res.send(Template.homeTemplate());
 });
 
 server.get('/about', (req, res)=>{
+	res.send(Template.aboutTemplate());
+});
 
-	let aboutMessage = `
-		<h1>This is a Node.js Blog Restful API...</h1>
-		<p><a href="/">Return Home</a></p>
-	`;
-
-	res.send(aboutMessage);
+server.get('/api/categories', (req, res)=>{
+	Categories.getCategories((err, categories)=>{
+		if(err){
+			throw err;
+		}else {
+			res.json(categories);
+		}
+	});
 });
 
 server.listen(PORT, ()=>{
