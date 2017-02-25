@@ -24,7 +24,7 @@ const blogSchema = mongoose.Schema({
 // Export Blog & Data Models
 const Blog = module.exports = mongoose.model('bv_blog', blogSchema, 'blog');
 
-// Get all Categories.
+// Get all Blog Post.
 module.exports.getBlog = (callback, limit)=>{
     Blog.find(callback).limit(limit);
 };
@@ -34,7 +34,7 @@ module.exports.getBlogById = (id, callback)=>{
     Blog.findById(id, callback);
 };
 
-// Add new Category
+// Add New Blog
 module.exports.addBlog = (blog, callback)=>{
     Blog.create(blog, callback);
 };
