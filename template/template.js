@@ -9,6 +9,7 @@ module.exports.homeTemplate = ()=>{
 			<li><a href="/about/post">Post Category API</a></li>
 			<li><a href="/api/categories">Get All Categories API</a></li>
 			<li><a href="/api/blog">Get All Blog Post API</a></li>
+			<li><a href="/api/pages">Get All Pages API</a></li>
 		</ul>
 	`;
     return homeMessage;
