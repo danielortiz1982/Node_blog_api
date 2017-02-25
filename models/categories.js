@@ -22,6 +22,7 @@ module.exports.getCategories = (callback, limit)=>{
 
 // Get Category By ID
 module.exports.getCategoryById = (id, callback)=>{
+
     Categories.findById(id, callback);
 };
 
