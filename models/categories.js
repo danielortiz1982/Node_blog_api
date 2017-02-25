@@ -20,6 +20,11 @@ module.exports.getCategories = (callback, limit)=>{
     Categories.find(callback).limit(limit);
 };
 
+// Get Category By ID
+module.exports.getCategoryById = (id, callback)=>{
+    Categories.findById(id, callback);
+};
+
 // Add new Category
 module.exports.addCategory = (category, callback)=>{
     Categories.create(category, callback);

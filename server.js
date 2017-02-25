@@ -34,6 +34,18 @@ server.get('/api/categories', (req, res)=>{
 	});
 });
 
+server.get('/api/categories/:_id', (req, res)=>{
+
+	Categories.getCategoryById(req.params._id, (err, category)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(category);
+		}
+	})
+});
+
 server.post('/api/categories', (req, res)=>{
 	let categories = req.body;
 	Categories.addCategory(categories, (err, category)=>{
