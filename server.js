@@ -6,6 +6,7 @@ const bodyParser	= require('body-parser');
 const mongoose		= require('mongoose');
 const Categories	= require('./models/categories');
 const Blog			= require('./models/blog');
+const Pages			= require('./models/pages');
 const Template		= require('./template/template');
 const PORT			= 5000;
 const DB			= 'mongodb://localhost/bv_blog';
@@ -148,6 +149,65 @@ server.delete('/api/blog/:_id', (req, res)=>{
 		}
 		else{
 			res.json(blog);
+		}
+	})
+});
+
+/////////////////////////////////////////////////////////////////////////// Pages API /////////////////////////////////////////////////////////////////////////////////////////////
+
+server.get('/api/pages', (req, res)=>{
+	Pages.getPages((err, pages)=>{
+		if(err){
+			throw err;
+		}else {
+			res.json(pages);
+		}
+	});
+});
+
+server.get('/api/pages/:_id', (req, res)=>{
+	Pages.getPageById(req.params._id, (err, page)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(page);
+		}
+	})
+});
+
+server.post('/api/pages', (req, res)=>{
+	let page = req.body;
+	Pages.addPages(page, (err, page)=>{
+		if(err){
+			throw err;
+		}else{
+			res.json(page);
+		}
+	});
+});
+
+server.put('/api/pages/:_id', (req, res)=>{
+	let id = req.params._id;
+	let page = req.body;
+	Pages.updatePage(id, page, {}, (err, page)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(page);
+		}
+	});
+});
+
+server.delete('/api/pages/:_id', (req, res)=>{
+	var id = req.params._id;
+	Pages.deletePage(id, (err, page)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(page);
 		}
 	})
 });
