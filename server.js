@@ -30,6 +30,17 @@ server.get('/api/categories', (req, res)=>{
 	});
 });
 
+server.post('/api/categories', (req, res)=>{
+	let categories = req.body;
+	Categories.addCategory(categories, (err, category)=>{
+		if(err){
+			throw err;
+		}else{
+			res.json(category);
+		}
+	});
+});
+
 server.listen(PORT, ()=>{
 	return console.log('Server running on port => ' + PORT);
 });

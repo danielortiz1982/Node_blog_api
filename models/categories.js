@@ -13,7 +13,12 @@ const categoryShcema = mongoose.Schema({
 
 const Categories = module.exports = mongoose.model('categories', categoryShcema);
 
+// Get all categories.
 module.exports.getCategories = (callback, limit)=>{
-
     Categories.find(callback).limit(limit);
+};
+
+// Add new category
+module.exports.addCategory = (category, callback)=>{
+    Categories.create(category, callback);
 };
