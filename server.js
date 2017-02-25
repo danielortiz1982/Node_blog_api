@@ -20,6 +20,10 @@ server.get('/about', (req, res)=>{
 	res.send(Template.aboutTemplate());
 });
 
+server.get('/about/post', (req,res)=>{
+	res.send(Template.aboutPostTemplate());
+});
+
 server.get('/api/categories', (req, res)=>{
 	Categories.getCategories((err, categories)=>{
 		if(err){
@@ -39,6 +43,31 @@ server.post('/api/categories', (req, res)=>{
 			res.json(category);
 		}
 	});
+});
+
+server.put('/api/categories/:_id', (req, res)=>{
+	let id = req.params._id;
+	let categories = req.body;
+	Categories.updateCategory(id, categories, {}, (err, category)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(category);
+		}
+	});
+});
+
+server.delete('/api/categories/:_id', (req, res)=>{
+	var id = req.params._id;
+	Categories.deleteCategory(id, (err, genre)=>{
+		if(err){
+			throw err;
+		}
+		else{
+			res.json(genre);
+		}
+	})
 });
 
 server.listen(PORT, ()=>{
