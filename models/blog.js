@@ -6,6 +6,15 @@ const blogSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image_url: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    seo_keywords: [],
     create_date: {
         type: Date,
         default: Date.now
