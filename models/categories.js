@@ -1,6 +1,8 @@
 const mongoose		= require('mongoose');
 
 // Create Mongoose Schema
+const collection = 'categories';
+
 const categorySchema = mongoose.Schema({
    name: {
        type: String,
@@ -13,7 +15,7 @@ const categorySchema = mongoose.Schema({
 });
 
 // Export Categories & Data Models
-const Categories = module.exports = mongoose.model('categories', categorySchema);
+const Categories = module.exports = mongoose.model(collection, categorySchema);
 
 // Get all Categories.
 module.exports.getCategories = (callback, limit)=>{
@@ -22,7 +24,6 @@ module.exports.getCategories = (callback, limit)=>{
 
 // Get Category By ID
 module.exports.getCategoryById = (id, callback)=>{
-
     Categories.findById(id, callback);
 };
 

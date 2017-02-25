@@ -1,6 +1,8 @@
 const mongoose		= require('mongoose');
 
-// Create Mongoose Schema
+// Create Mongoose Schema info
+const collection = 'blog';
+
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
@@ -22,7 +24,7 @@ const blogSchema = mongoose.Schema({
 });
 
 // Export Blog & Data Models
-const Blog = module.exports = mongoose.model('bv_blog', blogSchema, 'blog');
+const Blog = module.exports = mongoose.model('bv_blog', blogSchema, collection);
 
 // Get all Blog Post.
 module.exports.getBlog = (callback, limit)=>{
